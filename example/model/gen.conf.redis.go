@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ezbuy/redis-orm/orm"
+	"github.com/matfax/redis-orm/orm"
 )
 
 var (

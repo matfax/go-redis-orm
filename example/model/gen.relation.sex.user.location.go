@@ -2,8 +2,8 @@ package model
 
 import (
 	"fmt"
-	"github.com/ezbuy/redis-orm/orm"
-	redis "gopkg.in/redis.v5"
+	"github.com/matfax/redis-orm/orm"
+	"github.com/go-redis/redis"
 	"strings"
 	"time"
 )

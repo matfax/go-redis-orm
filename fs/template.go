@@ -10,8 +10,8 @@ import (
 	"text/template"
 	"unicode"
 
-	"github.com/ezbuy/redis-orm/parser"
-	"github.com/ezbuy/redis-orm/tpl"
+	"github.com/matfax/redis-orm/parser"
+	"github.com/matfax/redis-orm/tpl"
 )
 
 var RedisOrmTemplate *template.Template

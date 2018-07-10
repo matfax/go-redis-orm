@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ezbuy/redis-orm/fs"
-	"github.com/ezbuy/redis-orm/parser"
+	"github.com/matfax/redis-orm/fs"
+	"github.com/matfax/redis-orm/parser"
 	"github.com/spf13/viper"
 )
 

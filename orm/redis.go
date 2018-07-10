@@ -3,7 +3,7 @@ package orm
 import (
 	"fmt"
 
-	redis "gopkg.in/redis.v5"
+	"github.com/go-redis/redis"
 )
 
 type RedisStore struct {

@@ -1,0 +1,74 @@
+
+# Gopkg.toml example
+#
+# Refer to https://github.com/golang/dep/blob/master/docs/Gopkg.toml.md
+# for detailed Gopkg.toml documentation.
+#
+# required = ["github.com/user/thing/cmd/thing"]
+# ignored = ["github.com/user/project/pkgX", "bitbucket.org/user/project/pkgA/pkgY"]
+#
+# [[constraint]]
+#   name = "github.com/user/project"
+#   version = "1.0.0"
+#
+# [[constraint]]
+#   name = "github.com/user/project2"
+#   branch = "dev"
+#   source = "github.com/myfork/project2"
+#
+# [[override]]
+#  name = "github.com/x/y"
+#  version = "2.4.0"
+
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/denisenkom/go-mssqldb"
+
+[[constraint]]
+  name = "github.com/emirpasic/gods"
+  version = "1.9.0"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/ezbuy/utils"
+
+[[constraint]]
+  name = "github.com/go-redis/redis"
+  version = "6.12.0"
+
+[[constraint]]
+  name = "github.com/go-sql-driver/mysql"
+  version = "1.4.0"
+
+[[constraint]]
+  name = "github.com/gocraft/dbr"
+  version = "2.2.0"
+
+[[constraint]]
+  name = "github.com/onsi/ginkgo"
+  version = "1.5.0"
+
+[[constraint]]
+  name = "github.com/onsi/gomega"
+  version = "1.4.0"
+
+[[constraint]]
+  name = "github.com/spf13/cobra"
+  version = "0.0.3"
+
+[[constraint]]
+  name = "github.com/spf13/viper"
+  version = "1.0.2"
+
+[[constraint]]
+  name = "gopkg.in/go-playground/validator.v9"
+  version = "9.20.2"
+
+[[constraint]]
+  name = "gopkg.in/olivere/elastic.v2"
+  version = "2.0.61"
+
+[[constraint]]
+  name = "gopkg.in/yaml.v2"
+  version = "2.2.1"

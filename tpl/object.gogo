@@ -14,13 +14,13 @@ import (
 	"errors"
 	{{- end}}
 
-	"github.com/ezbuy/redis-orm/orm"
+	"github.com/matfax/redis-orm/orm"
 	"gopkg.in/go-playground/validator.v9"
 	{{- if $obj.DbContains "elastic"}}
 	elastic "gopkg.in/olivere/elastic.v2"
 	{{- end}}
 	{{- if $obj.DbContains "redis"}}
-	redis "gopkg.in/redis.v5"
+	"github.com/go-redis/redis"
 	{{- end}}
 )
 var (

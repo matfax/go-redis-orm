@@ -4,7 +4,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ezbuy/redis-orm/orm"
+	"github.com/matfax/redis-orm/orm"
 )
 
 var (

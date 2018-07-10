@@ -9,7 +9,7 @@ redis-orm fly orm up
 ### generate command
 
 ````
-$: go get github.com/ezbuy/redis-orm
+$: go get github.com/matfax/redis-orm
 
 $: redis-orm code -i example/yaml -o example/model
 
@@ -18,7 +18,7 @@ $: redis-orm code -i example/yaml -o example/model
 ### read access usage
 
 ````
-import "github.com/ezbuy/redis-orm/example/model"
+import "github.com/matfax/redis-orm/example/model"
 
 # mysql
 model.MySQLSetup(cf)
@@ -59,7 +59,7 @@ model.UserRedisMgr(redis).FetchByPrimaryKeys(pks []PrimaryKey) ([]*User, error)
 ### write access usage
 
 ````
-import "github.com/ezbuy/redis-orm/example/model"
+import "github.com/matfax/redis-orm/example/model"
 
 # mysql
 model.MySQLSetup(cf)
@@ -96,7 +96,7 @@ model.UserRedisMgr(redis).Delete(obj)
 ### sync data
 
 ````
-import "github.com/ezbuy/redis-orm/example/model"
+import "github.com/matfax/redis-orm/example/model"
 
 model.MySQLSetup(cf)
 model.RedisSetup(cf)

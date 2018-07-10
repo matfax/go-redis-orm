@@ -3,7 +3,7 @@ package model
 import (
 	"database/sql"
 	"fmt"
-	"github.com/ezbuy/redis-orm/orm"
+	"github.com/matfax/redis-orm/orm"
 	"strings"
 	"time"
 )

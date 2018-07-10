@@ -4,15 +4,12 @@ import (
 	"fmt"
 	"time"
 
-	. "github.com/ezbuy/redis-orm/example/model"
-	"github.com/ezbuy/redis-orm/orm"
+	"github.com/matfax/redis-orm/orm"
 
 	"log"
 
 	"strings"
 
-	. "github.com/onsi/ginkgo"
-	. "github.com/onsi/gomega"
 )
 
 var _ = Describe("manager", func() {

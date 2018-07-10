@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ezbuy/redis-orm/orm"
+	"github.com/matfax/redis-orm/orm"
 	"gopkg.in/go-playground/validator.v9"
-	redis "gopkg.in/redis.v5"
+	"github.com/go-redis/redis"
 )
 
 var (
