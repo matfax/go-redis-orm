@@ -3,9 +3,9 @@ jobs:
   test:
     docker:
       # CircleCI Go images available at: https://hub.docker.com/r/circleci/golang/
-      - image: circleci/golang:1.10
+      - image: matfax/go-redis-orm:golang
       # CircleCI PostgreSQL images available at: https://hub.docker.com/r/circleci/mysql/
-      - image: circleci/mysql:8
+      - image: matfax/go-redis-orm:mysql
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_ROOT_PASSWORD: ''
