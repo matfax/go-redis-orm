@@ -21,18 +21,12 @@ jobs:
       - run:
           name: Setup Database Client
           command: sudo apt-get update && sudo apt-get install mysql-client
-      - restore_cache:
-          key: go-req-{{ checksum "/usr/local/go/bin/go" }}-
       - run:
           command: |
             go get -u github.com/lib/pq
             go get -u github.com/mattes/migrate
             go get -u github.com/jstemmer/go-junit-report
           name: Install Requirements
-      - save_cache:
-          key: go-req-{{ checksum "/usr/local/go/bin/go" }}-{{ checksum "/go/bin/go-junit-report" }}
-          paths:
-          - /go
       - checkout
       - run:
           name: Create Test Folder
