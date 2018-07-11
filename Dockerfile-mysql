@@ -1,0 +1,2 @@
+FROM circleci/mysql:8
+COPY ./example/script/* /docker-entrypoint-initdb.d/

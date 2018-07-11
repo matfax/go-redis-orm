@@ -18,15 +18,6 @@ jobs:
       TEST_RESULTS: /tmp/test-results
 
     steps:
-      - run:
-          name: Setup Database Client
-          command: sudo apt-get update && sudo apt-get install mysql-client
-      - run:
-          command: |
-            go get -u github.com/lib/pq
-            go get -u github.com/mattes/migrate
-            go get -u github.com/jstemmer/go-junit-report
-          name: Install Requirements
       - checkout
       - run:
           name: Create Test Folder
@@ -49,10 +40,6 @@ jobs:
           name: Wait for MySQL
           # preinstalled in circleci/* docker image
           command: dockerize -wait tcp://localhost:3306 -timeout 120s
-      - run:
-          name: Setup Database
-          command: |
-            cat ./example/script/*.sql | mysql -u root@'127.0.0.1' --password="" goredisorm
       - run:
           name: Build
           command: |
