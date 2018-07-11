@@ -1,5 +1,5 @@
-
-CREATE TABLE `testCRUD` (
+USE goredisorm;
+CREATE TABLE`testCRUD` (
 	`office_id` INT(11) NOT NULL AUTO_INCREMENT,
 	`office_area` VARCHAR(100) NOT NULL DEFAULT '',
 	`office_name` VARCHAR(100) NOT NULL DEFAULT '',
@@ -11,4 +11,3 @@ CREATE TABLE `testCRUD` (
 	`update_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(`office_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT 'testCRUD';
-

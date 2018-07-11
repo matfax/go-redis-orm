@@ -1,5 +1,5 @@
-
-CREATE TABLE `user_blogs` (
+USE goredisorm;
+CREATE TABLE`user_blogs` (
 	`user_id` INT(11) NOT NULL DEFAULT '0',
 	`blog_id` INT(11) NOT NULL DEFAULT '0',
 	PRIMARY KEY(`user_id`,`blog_id`)

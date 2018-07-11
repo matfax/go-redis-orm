@@ -4,6 +4,8 @@
 -- GRANT ALL PRIVILEGES ON `redisorm`.* TO `redisorm_user`@'%';
 -- FLUSH PRIVILEGES;
 
+USE goredisorm;
+
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (

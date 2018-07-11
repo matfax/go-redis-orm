@@ -1,5 +1,5 @@
-
-CREATE TABLE `users` (
+USE goredisorm;
+CREATE TABLE`users` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`name` VARCHAR(100) NOT NULL DEFAULT '',
 	`mailbox` VARCHAR(100) NOT NULL DEFAULT '' COMMENT '邮箱',

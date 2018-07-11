@@ -1,5 +1,5 @@
-
-CREATE TABLE `indexed_blog` (
+USE goredisorm;
+CREATE TABLE`indexed_blog` (
 	`id` INT(11) NOT NULL DEFAULT '0',
 	`user_id` INT(11) NOT NULL DEFAULT '0',
 	`hash` VARCHAR(100) NOT NULL DEFAULT '',
