@@ -4,7 +4,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/matfax/redis-orm/orm"
+	"github.com/matfax/go-redis-orm/orm"
 )
 
 var (

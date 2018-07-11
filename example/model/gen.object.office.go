@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/matfax/redis-orm/orm"
+	"github.com/matfax/go-redis-orm/orm"
 	"gopkg.in/go-playground/validator.v9"
 )
 

@@ -14,7 +14,7 @@
 
 package main
 
-import "github.com/matfax/redis-orm/cmd"
+import "github.com/matfax/go-redis-orm/cmd"
 
 func main() {
 	cmd.Execute()

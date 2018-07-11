@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 	"strings"
-	"github.com/matfax/redis-orm/orm"
+	"github.com/matfax/go-redis-orm/orm"
 	"github.com/go-redis/redis"
 )
 var (

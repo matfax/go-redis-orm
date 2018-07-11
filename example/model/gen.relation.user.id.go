@@ -2,8 +2,8 @@ package model
 
 import (
 	"fmt"
-	"github.com/matfax/redis-orm/orm"
 	"github.com/go-redis/redis"
+	"github.com/matfax/go-redis-orm/orm"
 	"strings"
 	"time"
 )
@@ -53,11 +53,11 @@ func (m *_UserIdRedisMgr) NewUserId(key string) *UserId {
 
 //! pipeline
 type _UserIdRedisPipeline struct {
-	*redis.Pipeline
+	redis.Pipeliner
 	Err error
 }
 
-func (m *_UserIdRedisMgr) BeginPipeline(pipes ...*redis.Pipeline) *_UserIdRedisPipeline {
+func (m *_UserIdRedisMgr) BeginPipeline(pipes ...redis.Pipeliner) *_UserIdRedisPipeline {
 	if len(pipes) > 0 {
 		return &_UserIdRedisPipeline{pipes[0], nil}
 	}

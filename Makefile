@@ -1,6 +1,7 @@
 all:
 
 init:
+    apt-get install mysql-server redis-server
 	go get -u github.com/jteeuwen/go-bindata/...
 
 debugTpl:
@@ -17,11 +18,10 @@ install:
 
 sql:
 	go install
-	redis-orm sql -i ./example/yaml/ -o ./example/script/
+	go-redis-orm sql -i ./example/yaml/ -o ./example/script/
 
 test:
 	go install
-	redis-orm code -i ./example/yaml/ -o ./example/model/
-	# go test -v ./... ???
+	go-redis-orm code -i ./example/yaml/ -o ./example/model/
 	go test -v ./orm/sqlbuilder
 	go test -v ./example/model/...

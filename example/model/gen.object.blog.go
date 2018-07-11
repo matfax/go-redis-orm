@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/matfax/redis-orm/orm"
+	"github.com/matfax/go-redis-orm/orm"
 	"gopkg.in/go-playground/validator.v9"
 	"gopkg.in/olivere/elastic.v2"
 )

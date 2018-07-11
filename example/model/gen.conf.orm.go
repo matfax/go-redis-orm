@@ -1,6 +1,6 @@
 package model
 
-import "github.com/matfax/redis-orm/orm"
+import "github.com/matfax/go-redis-orm/orm"
 
 type SQL interface {
 	SQLFormat(limit bool) string

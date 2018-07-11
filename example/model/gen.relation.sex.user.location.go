@@ -2,8 +2,8 @@ package model
 
 import (
 	"fmt"
-	"github.com/matfax/redis-orm/orm"
 	"github.com/go-redis/redis"
+	"github.com/matfax/go-redis-orm/orm"
 	"strings"
 	"time"
 )
@@ -55,11 +55,11 @@ func (m *_SexUserLocationRedisMgr) NewSexUserLocation(key string) *SexUserLocati
 
 //! pipeline
 type _SexUserLocationRedisPipeline struct {
-	*redis.Pipeline
+	redis.Pipeliner
 	Err error
 }
 
-func (m *_SexUserLocationRedisMgr) BeginPipeline(pipes ...*redis.Pipeline) *_SexUserLocationRedisPipeline {
+func (m *_SexUserLocationRedisMgr) BeginPipeline(pipes ...redis.Pipeliner) *_SexUserLocationRedisPipeline {
 	if len(pipes) > 0 {
 		return &_SexUserLocationRedisPipeline{pipes[0], nil}
 	}

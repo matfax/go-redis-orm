@@ -1,9 +1,6 @@
-package model_test
+package model
 
 import (
-	. "github.com/onsi/ginkgo"
-	. "github.com/onsi/gomega"
-
 	"testing"
 )
 

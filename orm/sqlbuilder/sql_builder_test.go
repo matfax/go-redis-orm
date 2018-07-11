@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/matfax/redis-orm/example/model"
+	"github.com/matfax/go-redis-orm/example/model"
 )
 
 func TestSQLBuilder(t *testing.T) {

@@ -1,10 +1,10 @@
-package model_test
+package model
 
 import (
 	"fmt"
 	"time"
 
-	"github.com/matfax/redis-orm/orm"
+	"github.com/matfax/go-redis-orm/orm"
 
 	"log"
 
@@ -16,9 +16,9 @@ var _ = Describe("manager", func() {
 	MySQLSetup(&MySQLConfig{
 		Host:     "localhost",
 		Port:     3306,
-		UserName: "ezorm_user",
-		Password: "ezorm_pass",
-		Database: "ezorm",
+		UserName: "root",
+		Password: "",
+		Database: "redisorm",
 	})
 
 	RedisSetUp(&RedisConfig{
@@ -52,8 +52,8 @@ var _ = Describe("manager", func() {
 			users = append(users, user)
 		}
 		n, err := UserDBMgr(tx).BatchCreate(users)
-		Ω(n).To(Equal(int64(100)))
 		Ω(err).ShouldNot(HaveOccurred())
+		Ω(n).To(Equal(int64(100)))
 	})
 
 	AfterEach(func() {
@@ -61,8 +61,8 @@ var _ = Describe("manager", func() {
 		Ω(err).ShouldNot(HaveOccurred())
 		defer tx.Close()
 		n, err := UserDBMgr(tx).DeleteBySQL("")
-		Ω(n).To(Equal(int64(100)))
 		Ω(err).ShouldNot(HaveOccurred())
+		Ω(n).To(Equal(int64(100)))
 	})
 
 	Describe("load", func() {
@@ -94,9 +94,9 @@ var _ = Describe("redis-orm.mysql", func() {
 			MySQLSetup(&MySQLConfig{
 				Host:     "localhost",
 				Port:     3306,
-				UserName: "ezorm_user",
-				Password: "ezorm_pass",
-				Database: "ezorm",
+				UserName: "root",
+				Password: "",
+				Database: "redisorm",
 			})
 
 			user := UserMgr.NewUser()
@@ -173,9 +173,9 @@ var _ = Describe("redis-orm.mysql", func() {
 		MySQLSetup(&MySQLConfig{
 			Host:     "localhost",
 			Port:     3306,
-			UserName: "ezorm_user",
-			Password: "ezorm_pass",
-			Database: "ezorm",
+			UserName: "root",
+			Password: "",
+			Database: "redisorm",
 		})
 		d, _ := time.ParseDuration("6ms")
 		MySQL().SlowLog(d)
@@ -330,8 +330,8 @@ var _ = Describe("redis-orm.mysql", func() {
 			}
 
 			n, err := mgr.BatchCreate(users)
-			Ω(n).To(Equal(int64(100)))
 			Ω(err).ShouldNot(HaveOccurred())
+			Ω(n).To(Equal(int64(100)))
 
 		})
 		AfterEach(func() {
@@ -503,9 +503,9 @@ var _ = Describe("redis-orm.redis", func() {
 	MySQLSetup(&MySQLConfig{
 		Host:     "localhost",
 		Port:     3306,
-		UserName: "ezorm_user",
-		Password: "ezorm_pass",
-		Database: "ezorm",
+		UserName: "root",
+		Password: "",
+		Database: "redisorm",
 	})
 
 	RedisSetUp(&RedisConfig{
@@ -542,8 +542,8 @@ var _ = Describe("redis-orm.redis", func() {
 		}
 
 		n, err := mgr.BatchCreate(users)
-		Ω(n).To(Equal(int64(100)))
 		Ω(err).ShouldNot(HaveOccurred())
+		Ω(n).To(Equal(int64(100)))
 	})
 
 	AfterEach(func() {
@@ -604,7 +604,7 @@ var _ = Describe("redis-orm.redis", func() {
 			Ω(err).ShouldNot(HaveOccurred())
 			Ω(obj.Name).To(Equal(fmt.Sprintf("name%d", 102)))
 
-			time.Sleep(time.Second)
+			time.Sleep(2 * time.Second)
 			_, err = UserRedisMgr(Redis()).Fetch(userWithExpire.GetPrimaryKey())
 			fmt.Printf("createWithExpire after expire:%v", err)
 			Ω(strings.Contains(err.Error(), "not exist")).Should(Equal(true))
@@ -641,7 +641,7 @@ var _ = Describe("redis-orm.redis", func() {
 			Ω(err).ShouldNot(HaveOccurred())
 			Ω(obj2.Age).To(Equal(int32(40)))
 
-			time.Sleep(time.Second)
+			time.Sleep(2 * time.Second)
 			_, err = UserRedisMgr(Redis()).Fetch(userWithExpire.GetPrimaryKey())
 			fmt.Printf("updateWithExpire after expire:%v", err)
 			Ω(strings.Contains(err.Error(), "not exist")).Should(Equal(true))

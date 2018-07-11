@@ -1,7 +1,7 @@
--- CREATE DATABASE IF NOT EXISTS `ezorm`;
--- GRANT ALL PRIVILEGES ON *.* TO `ezorm_user`@'%' IDENTIFIED BY 'ezorm_pass';
--- GRANT ALL PRIVILEGES ON *.* TO 'ezorm_user'@'localhost' IDENTIFIED BY 'ezorm_pass';
--- GRANT ALL PRIVILEGES ON `ezorm`.* TO `ezorm_user`@'%';
+-- CREATE DATABASE IF NOT EXISTS `redisorm`;
+-- GRANT ALL PRIVILEGES ON *.* TO `redisorm_user`@'%' IDENTIFIED BY 'redisorm_pass';
+-- GRANT ALL PRIVILEGES ON *.* TO 'redisorm_user'@'localhost' IDENTIFIED BY 'redisorm_pass';
+-- GRANT ALL PRIVILEGES ON `redisorm`.* TO `redisorm_user`@'%';
 -- FLUSH PRIVILEGES;
 
 DROP TABLE IF EXISTS `users`;
@@ -15,11 +15,13 @@ CREATE TABLE `users` (
   `description` VARCHAR(256)     NOT NULL  DEFAULT '',
   `password`    VARCHAR(32)      NOT NULL  DEFAULT '',
   `head_url`    VARCHAR(255)     NOT NULL  DEFAULT '',
-  `longitude`   float DEFAULT NULL COMMENT '位置经度',
-  `latitude`    float DEFAULT NULL COMMENT '位置纬度',
+  `longitude`   float                                  DEFAULT NULL
+  COMMENT 'longitude',
+  `latitude`    float                                  DEFAULT NULL
+  COMMENT 'latitude',
   `status`      TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
-  `created_at`   BIGINT(20)      NOT NULL DEFAULT '0',
-  `updated_at`   BIGINT(20)      NOT NULL DEFAULT '0'
+  `created_at`  BIGINT(20)      NOT NULL DEFAULT '0',
+  `updated_at`  BIGINT(20)      NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `blogs`;

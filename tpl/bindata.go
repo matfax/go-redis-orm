@@ -53,7 +53,10 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"go/build"
 )
+
+var gopath string
 
 // bindataRead reads the given file from disk. It returns an error on failure.
 func bindataRead(path, name string) ([]byte, error) {
@@ -69,9 +72,19 @@ type asset struct {
 	info  os.FileInfo
 }
 
+func getGoPath() string {
+	if gopath == "" {
+		gopath = os.Getenv("GOPATH")
+		if gopath == "" {
+			gopath = build.Default.GOPATH
+		}
+	}
+	return gopath
+}
+
 // tplConfElasticGogo reads file data from disk. It returns an error on failure.
 func tplConfElasticGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/conf.elastic.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/conf.elastic.gogo"
 	name := "tpl/conf.elastic.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -89,7 +102,7 @@ func tplConfElasticGogo() (*asset, error) {
 
 // tplConfMongoGogo reads file data from disk. It returns an error on failure.
 func tplConfMongoGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/conf.mongo.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/conf.mongo.gogo"
 	name := "tpl/conf.mongo.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -107,7 +120,7 @@ func tplConfMongoGogo() (*asset, error) {
 
 // tplConfMssqlGogo reads file data from disk. It returns an error on failure.
 func tplConfMssqlGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/conf.mssql.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/conf.mssql.gogo"
 	name := "tpl/conf.mssql.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -125,7 +138,7 @@ func tplConfMssqlGogo() (*asset, error) {
 
 // tplConfMysqlGogo reads file data from disk. It returns an error on failure.
 func tplConfMysqlGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/conf.mysql.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/conf.mysql.gogo"
 	name := "tpl/conf.mysql.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -143,7 +156,7 @@ func tplConfMysqlGogo() (*asset, error) {
 
 // tplConfOrmGogo reads file data from disk. It returns an error on failure.
 func tplConfOrmGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/conf.orm.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/conf.orm.gogo"
 	name := "tpl/conf.orm.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -161,7 +174,7 @@ func tplConfOrmGogo() (*asset, error) {
 
 // tplConfRedisGogo reads file data from disk. It returns an error on failure.
 func tplConfRedisGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/conf.redis.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/conf.redis.gogo"
 	name := "tpl/conf.redis.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -179,7 +192,7 @@ func tplConfRedisGogo() (*asset, error) {
 
 // tplObjectDbGogo reads file data from disk. It returns an error on failure.
 func tplObjectDbGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.db.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.db.gogo"
 	name := "tpl/object.db.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -197,7 +210,7 @@ func tplObjectDbGogo() (*asset, error) {
 
 // tplObjectDbQueryGogo reads file data from disk. It returns an error on failure.
 func tplObjectDbQueryGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.db.query.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.db.query.gogo"
 	name := "tpl/object.db.query.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -215,7 +228,7 @@ func tplObjectDbQueryGogo() (*asset, error) {
 
 // tplObjectDbReadGogo reads file data from disk. It returns an error on failure.
 func tplObjectDbReadGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.db.read.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.db.read.gogo"
 	name := "tpl/object.db.read.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -233,7 +246,7 @@ func tplObjectDbReadGogo() (*asset, error) {
 
 // tplObjectDbWriteGogo reads file data from disk. It returns an error on failure.
 func tplObjectDbWriteGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.db.write.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.db.write.gogo"
 	name := "tpl/object.db.write.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -251,7 +264,7 @@ func tplObjectDbWriteGogo() (*asset, error) {
 
 // tplObjectElasticGogo reads file data from disk. It returns an error on failure.
 func tplObjectElasticGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.elastic.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.elastic.gogo"
 	name := "tpl/object.elastic.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -269,7 +282,7 @@ func tplObjectElasticGogo() (*asset, error) {
 
 // tplObjectFunctionsGogo reads file data from disk. It returns an error on failure.
 func tplObjectFunctionsGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.functions.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.functions.gogo"
 	name := "tpl/object.functions.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -287,7 +300,7 @@ func tplObjectFunctionsGogo() (*asset, error) {
 
 // tplObjectGogo reads file data from disk. It returns an error on failure.
 func tplObjectGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.gogo"
 	name := "tpl/object.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -305,7 +318,7 @@ func tplObjectGogo() (*asset, error) {
 
 // tplObjectIndexGogo reads file data from disk. It returns an error on failure.
 func tplObjectIndexGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.index.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.index.gogo"
 	name := "tpl/object.index.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -323,7 +336,7 @@ func tplObjectIndexGogo() (*asset, error) {
 
 // tplObjectMongoGogo reads file data from disk. It returns an error on failure.
 func tplObjectMongoGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.mongo.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.mongo.gogo"
 	name := "tpl/object.mongo.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -341,7 +354,7 @@ func tplObjectMongoGogo() (*asset, error) {
 
 // tplObjectPrimaryKeyGogo reads file data from disk. It returns an error on failure.
 func tplObjectPrimaryKeyGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.primary.key.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.primary.key.gogo"
 	name := "tpl/object.primary.key.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -359,7 +372,7 @@ func tplObjectPrimaryKeyGogo() (*asset, error) {
 
 // tplObjectRangeGogo reads file data from disk. It returns an error on failure.
 func tplObjectRangeGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.range.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.range.gogo"
 	name := "tpl/object.range.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -377,7 +390,7 @@ func tplObjectRangeGogo() (*asset, error) {
 
 // tplObjectRedisGogo reads file data from disk. It returns an error on failure.
 func tplObjectRedisGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.redis.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.redis.gogo"
 	name := "tpl/object.redis.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -395,7 +408,7 @@ func tplObjectRedisGogo() (*asset, error) {
 
 // tplObjectRedisManagerGogo reads file data from disk. It returns an error on failure.
 func tplObjectRedisManagerGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.redis.manager.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.redis.manager.gogo"
 	name := "tpl/object.redis.manager.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -413,7 +426,7 @@ func tplObjectRedisManagerGogo() (*asset, error) {
 
 // tplObjectRedisPipelineGogo reads file data from disk. It returns an error on failure.
 func tplObjectRedisPipelineGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.redis.pipeline.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.redis.pipeline.gogo"
 	name := "tpl/object.redis.pipeline.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -431,7 +444,7 @@ func tplObjectRedisPipelineGogo() (*asset, error) {
 
 // tplObjectRedisReadGogo reads file data from disk. It returns an error on failure.
 func tplObjectRedisReadGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.redis.read.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.redis.read.gogo"
 	name := "tpl/object.redis.read.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -449,7 +462,7 @@ func tplObjectRedisReadGogo() (*asset, error) {
 
 // tplObjectRedisSyncGogo reads file data from disk. It returns an error on failure.
 func tplObjectRedisSyncGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.redis.sync.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.redis.sync.gogo"
 	name := "tpl/object.redis.sync.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -467,7 +480,7 @@ func tplObjectRedisSyncGogo() (*asset, error) {
 
 // tplObjectRedisWriteGogo reads file data from disk. It returns an error on failure.
 func tplObjectRedisWriteGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.redis.write.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.redis.write.gogo"
 	name := "tpl/object.redis.write.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -485,7 +498,7 @@ func tplObjectRedisWriteGogo() (*asset, error) {
 
 // tplObjectRelationGogo reads file data from disk. It returns an error on failure.
 func tplObjectRelationGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.relation.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.relation.gogo"
 	name := "tpl/object.relation.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -503,7 +516,7 @@ func tplObjectRelationGogo() (*asset, error) {
 
 // tplObjectUnqiueGogo reads file data from disk. It returns an error on failure.
 func tplObjectUnqiueGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/object.unqiue.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/object.unqiue.gogo"
 	name := "tpl/object.unqiue.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -521,7 +534,7 @@ func tplObjectUnqiueGogo() (*asset, error) {
 
 // tplQueryGogo reads file data from disk. It returns an error on failure.
 func tplQueryGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/query.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/query.gogo"
 	name := "tpl/query.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -539,7 +552,7 @@ func tplQueryGogo() (*asset, error) {
 
 // tplRelationDbReadGogo reads file data from disk. It returns an error on failure.
 func tplRelationDbReadGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/relation.db.read.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/relation.db.read.gogo"
 	name := "tpl/relation.db.read.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -557,7 +570,7 @@ func tplRelationDbReadGogo() (*asset, error) {
 
 // tplRelationFunctionsGogo reads file data from disk. It returns an error on failure.
 func tplRelationFunctionsGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/relation.functions.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/relation.functions.gogo"
 	name := "tpl/relation.functions.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -575,7 +588,7 @@ func tplRelationFunctionsGogo() (*asset, error) {
 
 // tplRelationGeoGogo reads file data from disk. It returns an error on failure.
 func tplRelationGeoGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/relation.geo.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/relation.geo.gogo"
 	name := "tpl/relation.geo.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -593,7 +606,7 @@ func tplRelationGeoGogo() (*asset, error) {
 
 // tplRelationGeoSyncGogo reads file data from disk. It returns an error on failure.
 func tplRelationGeoSyncGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/relation.geo.sync.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/relation.geo.sync.gogo"
 	name := "tpl/relation.geo.sync.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -611,7 +624,7 @@ func tplRelationGeoSyncGogo() (*asset, error) {
 
 // tplRelationGogo reads file data from disk. It returns an error on failure.
 func tplRelationGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/relation.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/relation.gogo"
 	name := "tpl/relation.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -629,7 +642,7 @@ func tplRelationGogo() (*asset, error) {
 
 // tplRelationListGogo reads file data from disk. It returns an error on failure.
 func tplRelationListGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/relation.list.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/relation.list.gogo"
 	name := "tpl/relation.list.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -647,7 +660,7 @@ func tplRelationListGogo() (*asset, error) {
 
 // tplRelationListSyncGogo reads file data from disk. It returns an error on failure.
 func tplRelationListSyncGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/relation.list.sync.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/relation.list.sync.gogo"
 	name := "tpl/relation.list.sync.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -665,7 +678,7 @@ func tplRelationListSyncGogo() (*asset, error) {
 
 // tplRelationManagerGogo reads file data from disk. It returns an error on failure.
 func tplRelationManagerGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/relation.manager.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/relation.manager.gogo"
 	name := "tpl/relation.manager.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -683,7 +696,7 @@ func tplRelationManagerGogo() (*asset, error) {
 
 // tplRelationPairGogo reads file data from disk. It returns an error on failure.
 func tplRelationPairGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/relation.pair.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/relation.pair.gogo"
 	name := "tpl/relation.pair.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -701,7 +714,7 @@ func tplRelationPairGogo() (*asset, error) {
 
 // tplRelationPairSyncGogo reads file data from disk. It returns an error on failure.
 func tplRelationPairSyncGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/relation.pair.sync.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/relation.pair.sync.gogo"
 	name := "tpl/relation.pair.sync.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -719,7 +732,7 @@ func tplRelationPairSyncGogo() (*asset, error) {
 
 // tplRelationPipelineGogo reads file data from disk. It returns an error on failure.
 func tplRelationPipelineGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/relation.pipeline.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/relation.pipeline.gogo"
 	name := "tpl/relation.pipeline.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -737,7 +750,7 @@ func tplRelationPipelineGogo() (*asset, error) {
 
 // tplRelationSetGogo reads file data from disk. It returns an error on failure.
 func tplRelationSetGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/relation.set.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/relation.set.gogo"
 	name := "tpl/relation.set.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -755,7 +768,7 @@ func tplRelationSetGogo() (*asset, error) {
 
 // tplRelationSetSyncGogo reads file data from disk. It returns an error on failure.
 func tplRelationSetSyncGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/relation.set.sync.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/relation.set.sync.gogo"
 	name := "tpl/relation.set.sync.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -773,7 +786,7 @@ func tplRelationSetSyncGogo() (*asset, error) {
 
 // tplRelationZsetGogo reads file data from disk. It returns an error on failure.
 func tplRelationZsetGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/relation.zset.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/relation.zset.gogo"
 	name := "tpl/relation.zset.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -791,7 +804,7 @@ func tplRelationZsetGogo() (*asset, error) {
 
 // tplRelationZsetSyncGogo reads file data from disk. It returns an error on failure.
 func tplRelationZsetSyncGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/relation.zset.sync.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/relation.zset.sync.gogo"
 	name := "tpl/relation.zset.sync.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -809,7 +822,7 @@ func tplRelationZsetSyncGogo() (*asset, error) {
 
 // tplScriptMysqlSql reads file data from disk. It returns an error on failure.
 func tplScriptMysqlSql() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/script.mysql.sql"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/script.mysql.sql"
 	name := "tpl/script.mysql.sql"
 	bytes, err := bindataRead(path, name)
 	if err != nil {
@@ -827,7 +840,7 @@ func tplScriptMysqlSql() (*asset, error) {
 
 // tplViewGogo reads file data from disk. It returns an error on failure.
 func tplViewGogo() (*asset, error) {
-	path := "/Users/blue/letgo/src/github.com/matfax/redis-orm/tpl/view.gogo"
+	path := getGoPath() + "/src/github.com/matfax/go-redis-orm/tpl/view.gogo"
 	name := "tpl/view.gogo"
 	bytes, err := bindataRead(path, name)
 	if err != nil {

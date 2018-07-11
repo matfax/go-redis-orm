@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/matfax/redis-orm/orm"
-	"gopkg.in/go-playground/validator.v9"
 	"github.com/go-redis/redis"
+	"github.com/matfax/go-redis-orm/orm"
+	"gopkg.in/go-playground/validator.v9"
 )
 
 var (
@@ -1108,11 +1108,11 @@ func UserRedisMgr(store *orm.RedisStore) *_UserRedisMgr {
 
 //! pipeline
 type _UserRedisPipeline struct {
-	*redis.Pipeline
+	redis.Pipeliner
 	Err error
 }
 
-func (m *_UserRedisMgr) BeginPipeline(pipes ...*redis.Pipeline) *_UserRedisPipeline {
+func (m *_UserRedisMgr) BeginPipeline(pipes ...redis.Pipeliner) *_UserRedisPipeline {
 	if len(pipes) > 0 {
 		return &_UserRedisPipeline{pipes[0], nil}
 	}
@@ -1310,8 +1310,8 @@ func (m *_UserRedisMgr) FetchByKey(key string) (*User, error) {
 		return nil, err
 	}
 
-	if b, err := cmds[0].(*redis.BoolCmd).Result(); err == nil {
-		if !b {
+	if b, err := cmds[0].(*redis.IntCmd).Result(); err == nil {
+		if b == 0 {
 			return nil, fmt.Errorf("User primary key:(%s) not exist", key)
 		}
 	}
@@ -1423,8 +1423,8 @@ func (m *_UserRedisMgr) FetchByPrimaryKeys(pks []PrimaryKey) ([]*User, error) {
 	sv := ""
 	ok := true
 	for i := 0; i < len(pks); i++ {
-		if b, err := cmds[2*i].(*redis.BoolCmd).Result(); err == nil {
-			if !b {
+		if b, err := cmds[2*i].(*redis.IntCmd).Result(); err == nil {
+			if b == 0 {
 				errall = append(errall, fmt.Sprintf("User primary key:(%s) not exist", pks[i].Key()))
 				continue
 			}
@@ -1609,7 +1609,7 @@ func (m *_UserRedisMgr) Delete(obj *User) error {
 		"Password",
 		fmt.Sprint(obj.Password),
 	}
-	uk_pip_0 := MailboxPasswordOfUserUKRelationRedisMgr().BeginPipeline(pipe.Pipeline)
+	uk_pip_0 := MailboxPasswordOfUserUKRelationRedisMgr().BeginPipeline(pipe.Pipeline())
 	if err := uk_pip_0.PairRem(strings.Join(uk_key_0, ":")); err != nil {
 		return err
 	}
@@ -1619,7 +1619,7 @@ func (m *_UserRedisMgr) Delete(obj *User) error {
 		"Sex",
 		fmt.Sprint(obj.Sex),
 	}
-	idx_pip_0 := SexOfUserIDXRelationRedisMgr().BeginPipeline(pipe.Pipeline)
+	idx_pip_0 := SexOfUserIDXRelationRedisMgr().BeginPipeline(pipe.Pipeline())
 	idx_rel_0 := SexOfUserIDXRelationRedisMgr().NewSexOfUserIDXRelation(strings.Join(idx_key_0, ":"))
 	idx_rel_0.Value = pk.Key()
 	if err := idx_pip_0.SetRem(idx_rel_0); err != nil {
@@ -1630,7 +1630,7 @@ func (m *_UserRedisMgr) Delete(obj *User) error {
 	rg_key_0 := []string{
 		"Id",
 	}
-	rg_pip_0 := IdOfUserRNGRelationRedisMgr().BeginPipeline(pipe.Pipeline)
+	rg_pip_0 := IdOfUserRNGRelationRedisMgr().BeginPipeline(pipe.Pipeline())
 	rg_rel_0 := IdOfUserRNGRelationRedisMgr().NewIdOfUserRNGRelation(strings.Join(rg_key_0, ":"))
 	score_rg_0, err := orm.ToFloat64(obj.Id)
 	if err != nil {
@@ -1644,7 +1644,7 @@ func (m *_UserRedisMgr) Delete(obj *User) error {
 	rg_key_1 := []string{
 		"Age",
 	}
-	rg_pip_1 := AgeOfUserRNGRelationRedisMgr().BeginPipeline(pipe.Pipeline)
+	rg_pip_1 := AgeOfUserRNGRelationRedisMgr().BeginPipeline(pipe.Pipeline())
 	rg_rel_1 := AgeOfUserRNGRelationRedisMgr().NewAgeOfUserRNGRelation(strings.Join(rg_key_1, ":"))
 	score_rg_1, err := orm.ToFloat64(obj.Age)
 	if err != nil {
@@ -1737,7 +1737,7 @@ func (m *_UserRedisMgr) addToPipeline(pipe *_UserRedisPipeline, obj *User, expir
 		"Password",
 		fmt.Sprint(obj.Password),
 	}
-	uk_pip_0 := MailboxPasswordOfUserUKRelationRedisMgr().BeginPipeline(pipe.Pipeline)
+	uk_pip_0 := MailboxPasswordOfUserUKRelationRedisMgr().BeginPipeline(pipe.Pipeline())
 	uk_rel_0 := MailboxPasswordOfUserUKRelationRedisMgr().NewMailboxPasswordOfUserUKRelation(strings.Join(uk_key_0, ":"))
 	uk_rel_0.Value = pk.Key()
 	if err := uk_pip_0.PairAdd(uk_rel_0); err != nil {
@@ -1749,7 +1749,7 @@ func (m *_UserRedisMgr) addToPipeline(pipe *_UserRedisPipeline, obj *User, expir
 		"Sex",
 		fmt.Sprint(obj.Sex),
 	}
-	idx_pip_0 := SexOfUserIDXRelationRedisMgr().BeginPipeline(pipe.Pipeline)
+	idx_pip_0 := SexOfUserIDXRelationRedisMgr().BeginPipeline(pipe.Pipeline())
 	idx_rel_0 := SexOfUserIDXRelationRedisMgr().NewSexOfUserIDXRelation(strings.Join(idx_key_0, ":"))
 	idx_rel_0.Value = pk.Key()
 	if err := idx_pip_0.SetAdd(idx_rel_0); err != nil {
@@ -1760,7 +1760,7 @@ func (m *_UserRedisMgr) addToPipeline(pipe *_UserRedisPipeline, obj *User, expir
 	rg_key_0 := []string{
 		"Id",
 	}
-	rg_pip_0 := IdOfUserRNGRelationRedisMgr().BeginPipeline(pipe.Pipeline)
+	rg_pip_0 := IdOfUserRNGRelationRedisMgr().BeginPipeline(pipe.Pipeline())
 	rg_rel_0 := IdOfUserRNGRelationRedisMgr().NewIdOfUserRNGRelation(strings.Join(rg_key_0, ":"))
 	score_rg_0, err := orm.ToFloat64(obj.Id)
 	if err != nil {
@@ -1774,7 +1774,7 @@ func (m *_UserRedisMgr) addToPipeline(pipe *_UserRedisPipeline, obj *User, expir
 	rg_key_1 := []string{
 		"Age",
 	}
-	rg_pip_1 := AgeOfUserRNGRelationRedisMgr().BeginPipeline(pipe.Pipeline)
+	rg_pip_1 := AgeOfUserRNGRelationRedisMgr().BeginPipeline(pipe.Pipeline())
 	rg_rel_1 := AgeOfUserRNGRelationRedisMgr().NewAgeOfUserRNGRelation(strings.Join(rg_key_1, ":"))
 	score_rg_1, err := orm.ToFloat64(obj.Age)
 	if err != nil {
@@ -1866,11 +1866,11 @@ func (m *_MailboxPasswordOfUserUKRelationRedisMgr) NewMailboxPasswordOfUserUKRel
 
 //! pipeline
 type _MailboxPasswordOfUserUKRelationRedisPipeline struct {
-	*redis.Pipeline
+	redis.Pipeliner
 	Err error
 }
 
-func (m *_MailboxPasswordOfUserUKRelationRedisMgr) BeginPipeline(pipes ...*redis.Pipeline) *_MailboxPasswordOfUserUKRelationRedisPipeline {
+func (m *_MailboxPasswordOfUserUKRelationRedisMgr) BeginPipeline(pipes ...redis.Pipeliner) *_MailboxPasswordOfUserUKRelationRedisPipeline {
 	if len(pipes) > 0 {
 		return &_MailboxPasswordOfUserUKRelationRedisPipeline{pipes[0], nil}
 	}
@@ -1962,11 +1962,11 @@ func (m *_SexOfUserIDXRelationRedisMgr) NewSexOfUserIDXRelation(key string) *Sex
 
 //! pipeline
 type _SexOfUserIDXRelationRedisPipeline struct {
-	*redis.Pipeline
+	redis.Pipeliner
 	Err error
 }
 
-func (m *_SexOfUserIDXRelationRedisMgr) BeginPipeline(pipes ...*redis.Pipeline) *_SexOfUserIDXRelationRedisPipeline {
+func (m *_SexOfUserIDXRelationRedisMgr) BeginPipeline(pipes ...redis.Pipeliner) *_SexOfUserIDXRelationRedisPipeline {
 	if len(pipes) > 0 {
 		return &_SexOfUserIDXRelationRedisPipeline{pipes[0], nil}
 	}
@@ -2071,11 +2071,11 @@ func (m *_IdOfUserRNGRelationRedisMgr) NewIdOfUserRNGRelation(key string) *IdOfU
 
 //! pipeline
 type _IdOfUserRNGRelationRedisPipeline struct {
-	*redis.Pipeline
+	redis.Pipeliner
 	Err error
 }
 
-func (m *_IdOfUserRNGRelationRedisMgr) BeginPipeline(pipes ...*redis.Pipeline) *_IdOfUserRNGRelationRedisPipeline {
+func (m *_IdOfUserRNGRelationRedisMgr) BeginPipeline(pipes ...redis.Pipeliner) *_IdOfUserRNGRelationRedisPipeline {
 	if len(pipes) > 0 {
 		return &_IdOfUserRNGRelationRedisPipeline{pipes[0], nil}
 	}
@@ -2199,11 +2199,11 @@ func (m *_AgeOfUserRNGRelationRedisMgr) NewAgeOfUserRNGRelation(key string) *Age
 
 //! pipeline
 type _AgeOfUserRNGRelationRedisPipeline struct {
-	*redis.Pipeline
+	redis.Pipeliner
 	Err error
 }
 
-func (m *_AgeOfUserRNGRelationRedisMgr) BeginPipeline(pipes ...*redis.Pipeline) *_AgeOfUserRNGRelationRedisPipeline {
+func (m *_AgeOfUserRNGRelationRedisMgr) BeginPipeline(pipes ...redis.Pipeliner) *_AgeOfUserRNGRelationRedisPipeline {
 	if len(pipes) > 0 {
 		return &_AgeOfUserRNGRelationRedisPipeline{pipes[0], nil}
 	}

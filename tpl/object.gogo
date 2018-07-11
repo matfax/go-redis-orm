@@ -14,7 +14,7 @@ import (
 	"errors"
 	{{- end}}
 
-	"github.com/matfax/redis-orm/orm"
+	"github.com/matfax/go-redis-orm/orm"
 	"gopkg.in/go-playground/validator.v9"
 	{{- if $obj.DbContains "elastic"}}
 	elastic "gopkg.in/olivere/elastic.v2"
