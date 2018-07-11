@@ -9,7 +9,7 @@ import (
 
 	"github.com/matfax/go-redis-orm/orm"
 	"gopkg.in/go-playground/validator.v9"
-	"gopkg.in/olivere/elastic.v2"
+	elastic "gopkg.in/olivere/elastic.v2"
 )
 
 var (
