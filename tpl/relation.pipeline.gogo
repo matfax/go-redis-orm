@@ -10,6 +10,6 @@ func (m *_{{$relation.Name}}RedisMgr) BeginPipeline(pipes ...redis.Pipeliner) *_
 	if len(pipes) > 0 {
 		return &_{{$relation.Name}}RedisPipeline{pipes[0], nil}
 	}
-	return &_{{$relation.Name}}RedisPipeline{m.Pipeline(), nil}
+	return &_{{$relation.Name}}RedisPipeline{m.TxPipeline(), nil}
 }
 {{end}}

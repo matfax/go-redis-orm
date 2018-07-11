@@ -61,7 +61,7 @@ func (m *_UserIdRedisMgr) BeginPipeline(pipes ...redis.Pipeliner) *_UserIdRedisP
 	if len(pipes) > 0 {
 		return &_UserIdRedisPipeline{pipes[0], nil}
 	}
-	return &_UserIdRedisPipeline{m.Pipeline(), nil}
+	return &_UserIdRedisPipeline{m.TxPipeline(), nil}
 }
 
 //! redis relation list

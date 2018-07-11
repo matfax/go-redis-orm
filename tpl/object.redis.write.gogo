@@ -35,7 +35,7 @@ func (m *_{{$obj.Name}}RedisMgr) Delete(obj *{{$obj.Name}}) error {
 			{{- end}}
 		{{- end}}
 	}
-	uk_pip_{{$i}} := {{$relation.Name}}RedisMgr().BeginPipeline(pipe.Pipeline())
+	uk_pip_{{$i}} := {{$relation.Name}}RedisMgr().BeginPipeline(pipe.TxPipeline())
 	if err := uk_pip_{{$i}}.PairRem(strings.Join(uk_key_{{$i}}, ":")); err != nil {
 		return err
 	}
@@ -54,7 +54,7 @@ func (m *_{{$obj.Name}}RedisMgr) Delete(obj *{{$obj.Name}}) error {
 			{{- end}}
 		{{- end}}
 	}
-	idx_pip_{{$i}} := {{$relation.Name}}RedisMgr().BeginPipeline(pipe.Pipeline())
+	idx_pip_{{$i}} := {{$relation.Name}}RedisMgr().BeginPipeline(pipe.TxPipeline())
 	idx_rel_{{$i}} := {{$relation.Name}}RedisMgr().New{{$relation.Name}}(strings.Join(idx_key_{{$i}}, ":"))
 	idx_rel_{{$i}}.Value = pk.Key()
 	if err := idx_pip_{{$i}}.SetRem(idx_rel_{{$i}}); err != nil {
@@ -79,7 +79,7 @@ func (m *_{{$obj.Name}}RedisMgr) Delete(obj *{{$obj.Name}}) error {
 			{{- end}}
 		{{- end}}
 	}
-	rg_pip_{{$i}} := {{$relation.Name}}RedisMgr().BeginPipeline(pipe.Pipeline())
+	rg_pip_{{$i}} := {{$relation.Name}}RedisMgr().BeginPipeline(pipe.TxPipeline())
 	rg_rel_{{$i}} := {{$relation.Name}}RedisMgr().New{{$relation.Name}}(strings.Join(rg_key_{{$i}}, ":"))
 	score_rg_{{$i}}, err := orm.ToFloat64({{$rg.LastField.GetTransformValue "obj."}})
 	if err != nil {
@@ -182,7 +182,7 @@ func (m *_{{$obj.Name}}RedisMgr) addToPipeline(pipe * _{{$obj.Name}}RedisPipelin
 			{{- end}}
 		{{- end}}
 	}
-	uk_pip_{{$i}} := {{$relation.Name}}RedisMgr().BeginPipeline(pipe.Pipeline())
+	uk_pip_{{$i}} := {{$relation.Name}}RedisMgr().BeginPipeline(pipe.TxPipeline())
 	uk_rel_{{$i}} := {{$relation.Name}}RedisMgr().New{{$relation.Name}}(strings.Join(uk_key_{{$i}}, ":"))
 	uk_rel_{{$i}}.Value = pk.Key()
 	if err := uk_pip_{{$i}}.PairAdd(uk_rel_{{$i}}); err != nil {
@@ -203,7 +203,7 @@ func (m *_{{$obj.Name}}RedisMgr) addToPipeline(pipe * _{{$obj.Name}}RedisPipelin
 			{{- end}}
 		{{- end}}
 	}
-	idx_pip_{{$i}} := {{$relation.Name}}RedisMgr().BeginPipeline(pipe.Pipeline())
+	idx_pip_{{$i}} := {{$relation.Name}}RedisMgr().BeginPipeline(pipe.TxPipeline())
 	idx_rel_{{$i}} := {{$relation.Name}}RedisMgr().New{{$relation.Name}}(strings.Join(idx_key_{{$i}}, ":"))
 	idx_rel_{{$i}}.Value = pk.Key()
 	if err := idx_pip_{{$i}}.SetAdd(idx_rel_{{$i}}); err != nil {
@@ -228,7 +228,7 @@ func (m *_{{$obj.Name}}RedisMgr) addToPipeline(pipe * _{{$obj.Name}}RedisPipelin
 			{{- end}}
 		{{- end}}
 	}
-	rg_pip_{{$i}} := {{$relation.Name}}RedisMgr().BeginPipeline(pipe.Pipeline())
+	rg_pip_{{$i}} := {{$relation.Name}}RedisMgr().BeginPipeline(pipe.TxPipeline())
 	rg_rel_{{$i}} := {{$relation.Name}}RedisMgr().New{{$relation.Name}}(strings.Join(rg_key_{{$i}}, ":"))
 	score_rg_{{$i}}, err := orm.ToFloat64({{$rg.LastField.GetTransformValue "obj."}})
 	if err != nil {

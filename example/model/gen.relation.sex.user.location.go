@@ -63,7 +63,7 @@ func (m *_SexUserLocationRedisMgr) BeginPipeline(pipes ...redis.Pipeliner) *_Sex
 	if len(pipes) > 0 {
 		return &_SexUserLocationRedisPipeline{pipes[0], nil}
 	}
-	return &_SexUserLocationRedisPipeline{m.Pipeline(), nil}
+	return &_SexUserLocationRedisPipeline{m.TxPipeline(), nil}
 }
 
 //! redis relation pair
