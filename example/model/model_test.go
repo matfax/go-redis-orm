@@ -89,14 +89,14 @@ var _ = Describe("manager", func() {
 	})
 })
 
-var _ = Describe("redis-orm.mysql", func() {
+var _ = Describe("go-redis-orm.mysql", func() {
 	Describe("CRUD", func() {
 		It("create", func() {
 			MySQLSetup(&MySQLConfig{
 				Host:     "localhost",
 				Port:     3306,
 				UserName: "root",
-				Password: "",
+				Password: "gogogo",
 				Database: "goredisorm",
 			})
 
@@ -169,13 +169,13 @@ var _ = Describe("redis-orm.mysql", func() {
 	})
 })
 
-var _ = Describe("redis-orm.mysql", func() {
+var _ = Describe("go-redis-orm.mysql", func() {
 	BeforeEach(func() {
 		MySQLSetup(&MySQLConfig{
 			Host:     "localhost",
 			Port:     3306,
 			UserName: "root",
-			Password: "",
+			Password: "gogogo",
 			Database: "goredisorm",
 		})
 		d, _ := time.ParseDuration("6ms")
@@ -499,7 +499,7 @@ var _ = Describe("redis-orm.mysql", func() {
 
 })
 
-var _ = Describe("redis-orm.redis", func() {
+var _ = Describe("go-redis-orm.redis", func() {
 
 	MySQLSetup(&MySQLConfig{
 		Host:     "localhost",
