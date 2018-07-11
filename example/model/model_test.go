@@ -18,7 +18,7 @@ var _ = Describe("manager", func() {
 		Port:     3306,
 		UserName: "root",
 		Password: "",
-		Database: "redisorm",
+		Database: "goredisorm",
 	})
 
 	RedisSetUp(&RedisConfig{
@@ -96,7 +96,7 @@ var _ = Describe("redis-orm.mysql", func() {
 				Port:     3306,
 				UserName: "root",
 				Password: "",
-				Database: "redisorm",
+				Database: "goredisorm",
 			})
 
 			user := UserMgr.NewUser()
@@ -175,7 +175,7 @@ var _ = Describe("redis-orm.mysql", func() {
 			Port:     3306,
 			UserName: "root",
 			Password: "",
-			Database: "redisorm",
+			Database: "goredisorm",
 		})
 		d, _ := time.ParseDuration("6ms")
 		MySQL().SlowLog(d)
@@ -505,7 +505,7 @@ var _ = Describe("redis-orm.redis", func() {
 		Port:     3306,
 		UserName: "root",
 		Password: "",
-		Database: "redisorm",
+		Database: "goredisorm",
 	})
 
 	RedisSetUp(&RedisConfig{

@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  test:
     docker:
       # CircleCI Go images available at: https://hub.docker.com/r/circleci/golang/
       - image: circleci/golang:1.10
@@ -18,57 +18,51 @@ jobs:
       TEST_RESULTS: /tmp/test-results
 
     steps:
-      - checkout
-      - run: mkdir -p $TEST_RESULTS
-
       - restore_cache:
-          keys:
-            - v1-pkg-cache
-
-      # Normally, this step would be in a custom primary image;
-      # we've added it here for the sake of explanation.
-      - run: go get github.com/lib/pq
-      - run: go get github.com/mattes/migrate
-      - run: go get github.com/jstemmer/go-junit-report
-
+          key: go-req-{{ checksum "/usr/local/go/bin/go" }}-
       - run:
-          name: Waiting for Postgres to be ready
           command: |
-            for i in `seq 1 10`;
-            do
-              nc -z localhost 5432 && echo Success && exit 0
-              echo -n .
-              sleep 1
-            done
-            echo Failed waiting for Postgres && exit 1
+            go get -u github.com/lib/pq
+            go get -u github.com/mattes/migrate
+            go get -u github.com/jstemmer/go-junit-report
+          name: Install Requirements
+      - save_cache:
+          key: go-req-{{ checksum "/usr/local/go/bin/go" }}-{{ checksum "/go/bin/go-junit-report" }}
+          paths:
+          - /go
+      - checkout
+      - run:
+          name: Create Test Folder
+          command: mkdir -p $TEST_RESULTS
+      - restore_cache:
+          key: dep-
+      - run:
+          command: dep ensure
+          name: Update dependencies
+      - save_cache:
+          key: dep-{{ checksum "Gopkg.toml" }}-{{ checksum "Gopkg.lock" }}
+          paths:
+          - vendor
+          - Gopkg.lock
+      - run:
+          name: Wait for Redis
+          # preinstalled in circleci/* docker image
+          command: dockerize -wait tcp://127.0.0.1:6379 -timeout 60s
+      - run:
+          name: Wait for MySQL
+          # preinstalled in circleci/* docker image
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+      - run:
+          name: Build
+          command: |
+            go install
+            go-redis-orm code -i ./example/yaml/ -o ./example/model/
       - run:
           name: Run unit tests
-          environment:
-            CONTACTS_DB_URL: "postgres://circleci-demo-go@localhost:5432/circle_test?sslmode=disable"
-            CONTACTS_DB_MIGRATIONS: /go/src/github.com/CircleCI-Public/circleci-demo-go/db/migrations
           command: |
-            trap "go-junit-report <${TEST_RESULTS}/go-test.out > ${TEST_RESULTS}/go-test-report.xml" EXIT
-            make test | tee ${TEST_RESULTS}/go-test.out
-      - run: make
+            go test -v ./orm/sqlbuilder | go-junit-report  > ${TEST_RESULTS}/sql-builder-report.xml
+            go test -v ./example/model/... | go-junit-report  > ${TEST_RESULTS}/go-test-report.xml
 
-      - save_cache:
-          key: v1-pkg-cache
-          paths:
-            - "/go/pkg"
-
-      - run:
-          name: Start service
-          environment:
-            CONTACTS_DB_URL: "postgres://circleci-demo-go@localhost:5432/circle_test?sslmode=disable"
-            CONTACTS_DB_MIGRATIONS: /go/src/github.com/CircleCI-Public/circleci-demo-go/db/migrations
-          command: ./workdir/contacts
-          background: true
-
-      - run:
-          name: Validate service is working
-          command: |
-            sleep 5
-            curl --retry 10 --retry-delay 1 -X POST --header "Content-Type: application/json" -d '{"email":"test@example.com","name":"Test User"}' http://localhost:8080/contacts
       - store_artifacts:
           path: /tmp/test-results
           destination: raw-test-output
