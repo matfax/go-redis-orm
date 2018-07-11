@@ -1,1 +1,1 @@
-USE goredisorm
+USE goredisorm;

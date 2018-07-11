@@ -22,19 +22,19 @@ var (
 )
 
 type User struct {
-	Id          int32      `db:"id" json:"id"`
-	Name        string     `db:"name" json:"name" validate:"required"`
-	Mailbox     string     `db:"mailbox" json:"mailbox" validate:"required"`
-	Sex         bool       `db:"sex" json:"sex"`
-	Age         int32      `db:"age" json:"age"`
-	Longitude   float64    `db:"longitude" json:"longitude"`
-	Latitude    float64    `db:"latitude" json:"latitude"`
-	Description string     `db:"description" json:"description"`
-	Password    string     `db:"password" json:"password"`
-	HeadUrl     string     `db:"head_url" json:"head_url"`
-	Status      int32      `db:"status" json:"status"`
-	CreatedAt   time.Time  `db:"created_at" json:"created_at"`
-	UpdatedAt   time.Time  `db:"updated_at" json:"updated_at"`
+	Id          int32     `db:"id" json:"id"`
+	Name        string    `binding:"required" db:"name" json:"name"`
+	Mailbox     string    `binding:"required" db:"mailbox" json:"mailbox"`
+	Sex         bool      `db:"sex" json:"sex"`
+	Age         int32     `db:"age" json:"age"`
+	Longitude   float64   `db:"longitude" json:"longitude"`
+	Latitude    float64   `db:"latitude" json:"latitude"`
+	Description string    `db:"description" json:"description"`
+	Password    string    `db:"password" json:"password"`
+	HeadUrl     string    `db:"head_url" json:"head_url"`
+	Status      int32     `db:"status" json:"status"`
+	CreatedAt   time.Time `db:"created_at" json:"created_at"`
+	UpdatedAt   time.Time `db:"updated_at" json:"updated_at"`
 	DeletedAt   *time.Time `db:"deleted_at" json:"deleted_at"`
 }
 

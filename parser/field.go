@@ -368,7 +368,7 @@ func (f *Field) GetTag() string {
 		}
 	}
 	if f.Validator != "" {
-		tagstr = append(tagstr, fmt.Sprintf("validate:\"%s\"", f.Validator))
+		tagstr = append(tagstr, fmt.Sprintf("binding:\"%s\"", f.Validator))
 	}
 	sortstr := sort.StringSlice(tagstr)
 	sort.Sort(sortstr)
