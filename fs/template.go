@@ -96,7 +96,7 @@ func init() {
 		"camel2sep":  camel2sep,
 	}
 
-	RedisOrmTemplate = template.New("redis-orm").Funcs(funcMap)
+	RedisOrmTemplate = template.New("go-redis-orm").Funcs(funcMap)
 	files := []string{
 		"tpl/conf.elastic.gogo",
 		"tpl/conf.mongo.gogo",

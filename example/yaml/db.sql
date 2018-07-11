@@ -1,7 +1,7 @@
--- CREATE DATABASE IF NOT EXISTS `redisorm`;
--- GRANT ALL PRIVILEGES ON *.* TO `redisorm_user`@'%' IDENTIFIED BY 'redisorm_pass';
--- GRANT ALL PRIVILEGES ON *.* TO 'redisorm_user'@'localhost' IDENTIFIED BY 'redisorm_pass';
--- GRANT ALL PRIVILEGES ON `redisorm`.* TO `redisorm_user`@'%';
+-- CREATE DATABASE IF NOT EXISTS `goredisorm`;
+-- GRANT ALL PRIVILEGES ON *.* TO `goredisorm_user`@'%' IDENTIFIED BY 'goredisorm_pass';
+-- GRANT ALL PRIVILEGES ON *.* TO 'goredisorm_user'@'localhost' IDENTIFIED BY 'goredisorm_pass';
+-- GRANT ALL PRIVILEGES ON `goredisorm`.* TO `redisorm_user`@'%';
 -- FLUSH PRIVILEGES;
 
 USE goredisorm;

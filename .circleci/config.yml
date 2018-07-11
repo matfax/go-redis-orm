@@ -7,8 +7,7 @@ jobs:
       # CircleCI PostgreSQL images available at: https://hub.docker.com/r/circleci/mysql/
       - image: matfax/go-redis-orm:mysql
         environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_ROOT_PASSWORD: 'gogogo'
           MYSQL_DATABASE: goredisorm
       - image: redis
 

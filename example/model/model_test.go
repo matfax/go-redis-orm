@@ -18,7 +18,7 @@ var _ = Describe("manager", func() {
 		Host:     "localhost",
 		Port:     3306,
 		UserName: "root",
-		Password: "",
+		Password: "gogogo",
 		Database: "goredisorm",
 	})
 
@@ -505,7 +505,7 @@ var _ = Describe("redis-orm.redis", func() {
 		Host:     "localhost",
 		Port:     3306,
 		UserName: "root",
-		Password: "",
+		Password: "gogogo",
 		Database: "goredisorm",
 	})
 
