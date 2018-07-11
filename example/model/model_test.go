@@ -7,7 +7,8 @@ import (
 	"github.com/matfax/go-redis-orm/orm"
 
 	"log"
-
+	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/gomega"
 	"strings"
 
 )

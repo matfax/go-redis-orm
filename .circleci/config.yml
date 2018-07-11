@@ -18,6 +18,9 @@ jobs:
       TEST_RESULTS: /tmp/test-results
 
     steps:
+      - run:
+          name: Setup Database Client
+          command: sudo apt-get update && sudo apt-get install mysql-client
       - restore_cache:
           key: go-req-{{ checksum "/usr/local/go/bin/go" }}-
       - run:
@@ -52,6 +55,10 @@ jobs:
           name: Wait for MySQL
           # preinstalled in circleci/* docker image
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+      - run:
+          name: Setup Database
+          command: |
+            cat ./example/script/*.sql | mysql -u root --password="" goredisorm
       - run:
           name: Build
           command: |
