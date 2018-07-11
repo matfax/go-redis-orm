@@ -52,7 +52,7 @@ jobs:
       - run:
           name: Setup Database
           command: |
-            cat ./example/script/*.sql | mysql -u root@'localhost' --password="" goredisorm
+            cat ./example/script/*.sql | mysql -u root@'127.0.0.1' --password="" goredisorm
       - run:
           name: Build
           command: |
