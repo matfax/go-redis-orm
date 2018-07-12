@@ -54,7 +54,10 @@ jobs:
           command: |
             trap "go-junit-report <${TEST_RESULTS}/go-test-report.out > ${TEST_RESULTS}/go-test-report.xml" EXIT
             go test -v -coverprofile=${TEST_RESULTS}/coverage.out ./example/model/... | tee ${TEST_RESULTS}/go-test-report.out
-            godacov -t $CODACY_TOKEN -r ${TEST_RESULTS}/coverage.out -c $CIRCLE_SHA1
+      - run:
+          name: Push Coverage Results
+          command: |
+            godacov -t $CODACY_TOKEN -r ${TEST_RESULTS}/coverage.out -c $CIRCLE_SHA1 || true
       - store_artifacts:
           path: /tmp/test-results
           destination: raw-test-output
