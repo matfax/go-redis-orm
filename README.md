@@ -1,4 +1,6 @@
 # redis-orm
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmatfax%2Fgo-redis-orm.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmatfax%2Fgo-redis-orm?ref=badge_shield)
+
 
 go-redis-orm fly orm up
 
@@ -162,3 +164,7 @@ enviroment:
       Slowest Time: 0.150s
       Average Time: 0.006s ± 0.009s
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmatfax%2Fgo-redis-orm.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmatfax%2Fgo-redis-orm?ref=badge_large)
