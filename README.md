@@ -1,4 +1,5 @@
 # go-redis-orm
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6a115474ed014f7898f0e2cecd9ac869)](https://app.codacy.com/app/matfax/go-redis-orm?utm_source=github.com&utm_medium=referral&utm_content=matfax/go-redis-orm&utm_campaign=badger)
 [![CircleCI](https://circleci.com/gh/matfax/go-redis-orm.svg?style=svg)](https://circleci.com/gh/matfax/go-redis-orm)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmatfax%2Fgo-redis-orm.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmatfax%2Fgo-redis-orm?ref=badge_shield)
 
