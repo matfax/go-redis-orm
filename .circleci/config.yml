@@ -46,7 +46,9 @@ jobs:
             go-redis-orm code -i ./example/yaml/ -o ./example/model/
       - run:
           name: Upload Dependency Graph to Fossa
-          command: fossa
+          command: |
+            curl -H "Authorization: token $FOSSA_API_KEY" "https://app.fossa.io/projects/git%2Bgithub.com%2Fmatfax%2Fgo-redis-orm"
+            fossa
       - run:
           name: Run SQL Builder Tests
           command: |
@@ -59,7 +61,7 @@ jobs:
             go test -v ./example/model/... | tee ${TEST_RESULTS}/go-test-report.out
       - run:
           name: Run Fossa Tests
-          command: fossa test
+          command: fossa test --debug 2>${TEST_RESULTS}/fossa-test.out
       - store_artifacts:
           path: /tmp/test-results
           destination: raw-test-output

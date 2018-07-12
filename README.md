@@ -1,6 +1,6 @@
-# redis-orm
+# go-redis-orm
+[![CircleCI](https://circleci.com/gh/matfax/go-redis-orm.svg?style=svg)](https://circleci.com/gh/matfax/go-redis-orm)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmatfax%2Fgo-redis-orm.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmatfax%2Fgo-redis-orm?ref=badge_shield)
-
 
 go-redis-orm fly orm up
 
