@@ -3,6 +3,7 @@
 [![CircleCI](https://circleci.com/gh/matfax/go-redis-orm.svg?style=svg)](https://circleci.com/gh/matfax/go-redis-orm)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmatfax%2Fgo-redis-orm.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmatfax%2Fgo-redis-orm?ref=badge_shield)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/512e959ecfa34e31ae569c19b300db26)](https://www.codacy.com/app/matfax/go-redis-orm?utm_source=github.com&utm_medium=referral&utm_content=matfax/go-redis-orm&utm_campaign=Badge_Coverage)
+[![Go Report Card](https://goreportcard.com/badge/github.com/matfax/go-redis-orm)](https://goreportcard.com/report/github.com/matfax/go-redis-orm)
 
 go-redis-orm fly orm up
 
